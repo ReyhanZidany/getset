@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Navigation } from "@/components/layout/Navigation";
 
 export const metadata: Metadata = {
   title: "GetSet - Smart Closet Organizer",
   description: "Organize your daily outfits with AI-powered weather-based suggestions",
   manifest: "/manifest.json",
-  themeColor: "#6366f1",
 };
 
 export default function RootLayout({
@@ -15,8 +15,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <head>
+        <meta name="theme-color" content="#6366f1" />
+      </head>
+      <body className="antialiased bg-slate-50">
+        <div className="flex h-screen overflow-hidden">
+          <Navigation />
+          <main className="flex-1 overflow-y-auto md:ml-64 pb-16 md:pb-0">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
