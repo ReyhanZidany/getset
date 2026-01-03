@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/ui/Button';
 import { Shuffle, History, Repeat, Sparkles } from 'lucide-react';
 
 interface QuickOutfitActionsProps {

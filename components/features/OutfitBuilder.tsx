@@ -61,7 +61,7 @@ export function OutfitBuilder({
     loadOutfit,
     getSelectedItemIds,
     getSelectedItemsArray,
-  } = useOutfitBuilder(wardrobeItems, weather, targetDate);
+  } = useOutfitBuilder(wardrobeItems, weather);
 
   // Get completed categories
   const completedCategories = useMemo(() => {

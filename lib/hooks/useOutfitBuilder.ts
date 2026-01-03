@@ -16,8 +16,7 @@ export interface OutfitBuilderState {
 
 export function useOutfitBuilder(
   wardrobeItems: ClothingItem[],
-  weather: WeatherData | null,
-  initialDate?: string
+  weather: WeatherData | null
 ) {
   const [selectedItems, setSelectedItems] = useState<Partial<Record<ClothingCategory, ClothingItem>>>({});
   const [currentCategory, setCurrentCategory] = useState<ClothingCategory>('tops');

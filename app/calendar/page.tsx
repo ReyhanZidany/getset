@@ -8,12 +8,13 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Input';
 import { ImageUpload } from '@/components/ui/ImageUpload';
+import { OutfitBuilder } from '@/components/features/OutfitBuilder';
 import { useWardrobe } from '@/lib/hooks/useWardrobe';
 import { useOutfits } from '@/lib/hooks/useOutfits';
 import { Outfit, ClothingItem } from '@/lib/types';
 import { generateId } from '@/lib/utils/localStorage';
 import { formatDate, formatDisplayDate, isToday } from '@/lib/utils/dateUtils';
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
 
 type ValuePiece = Date | null;
@@ -22,6 +23,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export default function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isOutfitModalOpen, setIsOutfitModalOpen] = useState(false);
+  const [isOutfitBuilderOpen, setIsOutfitBuilderOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [outfitPhoto, setOutfitPhoto] = useState('');
   const [outfitNotes, setOutfitNotes] = useState('');
@@ -30,6 +32,12 @@ export default function CalendarPage() {
   const { outfits, addOutfit: addNewOutfit, updateOutfit, getOutfitForDate } = useOutfits();
 
   const handleDateClick = (date: Date) => {
+    setSelectedDate(date);
+    // Open outfit builder for easier outfit creation
+    setIsOutfitBuilderOpen(true);
+  };
+
+  const handleQuickEdit = (date: Date) => {
     setSelectedDate(date);
     const existingOutfit = getOutfitForDate(formatDate(date));
     
@@ -120,6 +128,25 @@ export default function CalendarPage() {
       />
 
       <div className="p-4 md:p-6">
+        {/* Build Outfit Button */}
+        <div className="mb-6">
+          <button
+            onClick={() => {
+              setSelectedDate(new Date());
+              setIsOutfitBuilderOpen(true);
+            }}
+            className="w-full p-6 bg-gradient-to-br from-primary to-primary-dark rounded-xl shadow-lg hover:shadow-2xl transition-all hover:scale-[1.02] text-white"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <Sparkles className="w-6 h-6 text-yellow-300" />
+              <span className="text-xl font-bold">Build Today&apos;s Outfit</span>
+            </div>
+            <p className="text-sm text-blue-100 mt-2">
+              Smart AI-powered outfit suggestions
+            </p>
+          </button>
+        </div>
+
         <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
           <style jsx global>{`
             .react-calendar {
@@ -181,7 +208,7 @@ export default function CalendarPage() {
               <h3 className="text-lg font-semibold text-slate-900">
                 Outfit for {formatDisplayDate(selectedDate)}
               </h3>
-              <Button size="sm" onClick={() => handleDateClick(selectedDate)}>
+              <Button size="sm" onClick={() => handleQuickEdit(selectedDate)}>
                 Edit
               </Button>
             </div>
@@ -319,6 +346,16 @@ export default function CalendarPage() {
           </div>
         </div>
       </Modal>
+
+      {/* Outfit Builder Modal */}
+      <OutfitBuilder
+        isOpen={isOutfitBuilderOpen}
+        onClose={() => setIsOutfitBuilderOpen(false)}
+        initialDate={formatDate(selectedDate)}
+        onSave={() => {
+          setIsOutfitBuilderOpen(false);
+        }}
+      />
     </div>
   );
 }
