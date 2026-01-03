@@ -90,7 +90,7 @@ export default function CalendarPage() {
       if (outfit && outfit.items.length > 0) {
         return (
           <div className="flex justify-center mt-1">
-            <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
           </div>
         );
       }
@@ -101,7 +101,7 @@ export default function CalendarPage() {
   const getTileClassName = ({ date, view }: { date: Date; view: string }) => {
     if (view === 'month') {
       if (isToday(date)) {
-        return 'bg-indigo-100 font-bold';
+        return 'bg-blue-100 font-bold';
       }
     }
     return '';
@@ -133,14 +133,14 @@ export default function CalendarPage() {
             }
             .react-calendar__tile:enabled:hover,
             .react-calendar__tile:enabled:focus {
-              background-color: #eef2ff;
+              background-color: #e6f0f9;
             }
             .react-calendar__tile--now {
-              background: #eef2ff;
+              background: #e6f0f9;
               font-weight: bold;
             }
             .react-calendar__tile--active {
-              background: #6366f1 !important;
+              background: #1b4f8f !important;
               color: white;
             }
             .react-calendar__navigation button {
@@ -254,7 +254,7 @@ export default function CalendarPage() {
                     onClick={() => toggleItemSelection(item.id)}
                     className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all ${
                       selectedItems.includes(item.id)
-                        ? 'border-indigo-600 ring-2 ring-indigo-200'
+                        ? 'border-primary ring-2 ring-blue-200'
                         : 'border-transparent hover:border-slate-300'
                     }`}
                   >
@@ -265,8 +265,8 @@ export default function CalendarPage() {
                       className="object-cover"
                     />
                     {selectedItems.includes(item.id) && (
-                      <div className="absolute inset-0 bg-indigo-600 bg-opacity-30 flex items-center justify-center">
-                        <div className="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center">
+                      <div className="absolute inset-0 bg-primary bg-opacity-30 flex items-center justify-center">
+                        <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
                           <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>

@@ -47,7 +47,7 @@ export default function StatsPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.totalItems}</p>
+                <p className="text-3xl font-bold text-primary">{stats.totalItems}</p>
                 <p className="text-sm text-slate-600 mt-1">Total Items</p>
               </div>
             </CardContent>
@@ -56,7 +56,7 @@ export default function StatsPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.averageWearCount}</p>
+                <p className="text-3xl font-bold text-primary">{stats.averageWearCount}</p>
                 <p className="text-sm text-slate-600 mt-1">Avg Wear Count</p>
               </div>
             </CardContent>
@@ -65,7 +65,7 @@ export default function StatsPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.outfitsThisWeek}</p>
+                <p className="text-3xl font-bold text-primary">{stats.outfitsThisWeek}</p>
                 <p className="text-sm text-slate-600 mt-1">This Week</p>
               </div>
             </CardContent>
@@ -74,7 +74,7 @@ export default function StatsPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.outfitsThisMonth}</p>
+                <p className="text-3xl font-bold text-primary">{stats.outfitsThisMonth}</p>
                 <p className="text-sm text-slate-600 mt-1">This Month</p>
               </div>
             </CardContent>
@@ -167,7 +167,7 @@ export default function StatsPage() {
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
                       <div
-                        className="bg-indigo-600 h-2 rounded-full transition-all"
+                        className="bg-primary h-2 rounded-full transition-all"
                         style={{ width: `${item.percentage}%` }}
                       />
                     </div>
@@ -215,7 +215,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Calendar className="h-5 w-5 text-indigo-600 mr-2" />
+              <Calendar className="h-5 w-5 text-primary mr-2" />
               Monthly Outfit Trend
             </CardTitle>
           </CardHeader>
@@ -250,15 +250,15 @@ export default function StatsPage() {
         </Card>
 
         {/* Style Insights */}
-        <Card className="border-indigo-200 bg-indigo-50">
+        <Card className="border-blue-200 bg-blue-50">
           <CardHeader>
-            <CardTitle className="text-indigo-900 flex items-center">
+            <CardTitle className="text-blue-900 flex items-center">
               <Award className="h-5 w-5 mr-2" />
               Style Insights
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3 text-indigo-900">
+            <div className="space-y-3 text-blue-900">
               {stats.totalItems === 0 ? (
                 <p>Start adding items to your wardrobe to get personalized insights!</p>
               ) : (

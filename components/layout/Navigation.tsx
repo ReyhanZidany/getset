@@ -18,9 +18,9 @@ export function Navigation() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <nav className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:w-64 md:bg-indigo-700">
+      <nav className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:w-64 md:bg-blue-700">
         <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center h-16 flex-shrink-0 px-4 bg-indigo-800">
+          <div className="flex items-center h-16 flex-shrink-0 px-4 bg-blue-800">
             <h1 className="text-xl font-bold text-white">GetSet</h1>
           </div>
           <div className="flex-1 flex flex-col overflow-y-auto">
@@ -33,13 +33,13 @@ export function Navigation() {
                     href={item.href}
                     className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors ${
                       isActive
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-600 hover:text-white'
+                        ? 'bg-blue-800 text-white'
+                        : 'text-blue-100 hover:bg-blue-600 hover:text-white'
                     }`}
                   >
                     <item.icon
                       className={`mr-3 flex-shrink-0 h-6 w-6 ${
-                        isActive ? 'text-white' : 'text-indigo-300 group-hover:text-white'
+                        isActive ? 'text-white' : 'text-blue-300 group-hover:text-white'
                       }`}
                     />
                     {item.name}
@@ -61,11 +61,11 @@ export function Navigation() {
                 key={item.name}
                 href={item.href}
                 className={`flex flex-col items-center px-3 py-2 text-xs font-medium transition-colors ${
-                  isActive ? 'text-indigo-600' : 'text-slate-500 hover:text-indigo-600'
+                  isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'
                 }`}
               >
                 <item.icon
-                  className={`h-6 w-6 mb-1 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`}
+                  className={`h-6 w-6 mb-1 ${isActive ? 'text-primary' : 'text-slate-400'}`}
                 />
                 {item.name}
               </Link>

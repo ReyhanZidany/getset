@@ -385,11 +385,11 @@ export default function TravelPage() {
             )}
 
             {/* Packing Suggestions */}
-            <div className="bg-indigo-50 rounded-lg p-4">
-              <h4 className="text-sm font-medium text-indigo-900 mb-2">
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h4 className="text-sm font-medium text-blue-900 mb-2">
                 Packing Tips
               </h4>
-              <ul className="text-sm text-indigo-800 space-y-1 list-disc list-inside">
+              <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
                 <li>Check weather forecast closer to your trip date</li>
                 <li>Pack versatile items that can be mixed and matched</li>
                 <li>Don't forget essential accessories</li>

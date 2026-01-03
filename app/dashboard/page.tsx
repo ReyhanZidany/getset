@@ -58,7 +58,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{wardrobeItems.length}</p>
+                <p className="text-3xl font-bold text-primary">{wardrobeItems.length}</p>
                 <p className="text-sm text-slate-600 mt-1">Wardrobe Items</p>
               </div>
             </CardContent>
@@ -67,7 +67,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{outfitsThisWeek}</p>
+                <p className="text-3xl font-bold text-primary">{outfitsThisWeek}</p>
                 <p className="text-sm text-slate-600 mt-1">Outfits This Week</p>
               </div>
             </CardContent>
@@ -76,7 +76,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{outfits.length}</p>
+                <p className="text-3xl font-bold text-primary">{outfits.length}</p>
                 <p className="text-sm text-slate-600 mt-1">Total Outfits</p>
               </div>
             </CardContent>
@@ -85,7 +85,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">
+                <p className="text-3xl font-bold text-primary">
                   {wardrobeItems.length > 0 
                     ? Math.round(wardrobeItems.reduce((sum, item) => sum + item.wearCount, 0) / wardrobeItems.length)
                     : 0}
@@ -141,12 +141,12 @@ export default function DashboardPage() {
 
         {/* Getting Started Guide */}
         {wardrobeItems.length === 0 && (
-          <Card className="border-indigo-200 bg-indigo-50">
+          <Card className="border-blue-200 bg-blue-50">
             <CardHeader>
-              <CardTitle className="text-indigo-900">Getting Started</CardTitle>
+              <CardTitle className="text-blue-900">Getting Started</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-indigo-800 mb-4">
+              <p className="text-blue-800 mb-4">
                 Welcome to GetSet! Start by adding items to your virtual wardrobe.
               </p>
               <Link href="/wardrobe">

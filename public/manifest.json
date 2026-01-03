@@ -4,8 +4,8 @@
   "description": "Organize your daily outfits with weather-based suggestions",
   "start_url": "/",
   "display": "standalone",
-  "background_color":  "#ffffff",
-  "theme_color": "#6366f1",
+  "background_color":  "#f5f5f0",
+  "theme_color": "#1b4f8f",
   "orientation": "portrait",
   "icons": [
     {

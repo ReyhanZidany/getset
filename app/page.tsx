@@ -6,12 +6,12 @@ import { Button } from '@/components/ui/Button';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-blue-500 to-primary p-4">
       <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
         <div className="p-8 md:p-12">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-4">
-              <Sparkles className="w-8 h-8 text-indigo-600" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+              <Sparkles className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Welcome to GetSet
@@ -23,7 +23,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="text-center p-6 bg-slate-50 rounded-lg">
-              <ShoppingBag className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
+              <ShoppingBag className="w-12 h-12 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-slate-900 mb-2">Virtual Wardrobe</h3>
               <p className="text-sm text-slate-600">
                 Organize all your clothing items with photos and tags
@@ -31,7 +31,7 @@ export default function Home() {
             </div>
 
             <div className="text-center p-6 bg-slate-50 rounded-lg">
-              <CloudSun className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
+              <CloudSun className="w-12 h-12 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-slate-900 mb-2">Weather Integration</h3>
               <p className="text-sm text-slate-600">
                 Get outfit suggestions based on real-time weather
@@ -39,7 +39,7 @@ export default function Home() {
             </div>
 
             <div className="text-center p-6 bg-slate-50 rounded-lg">
-              <Calendar className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
+              <Calendar className="w-12 h-12 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-slate-900 mb-2">Outfit Calendar</h3>
               <p className="text-sm text-slate-600">
                 Plan and track your daily outfits effortlessly
