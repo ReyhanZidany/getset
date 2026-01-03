@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Input, Select, Textarea } from '@/components/ui/Input';
 import { ImageUpload } from '@/components/ui/ImageUpload';
 import { LoadingSpinner } from '@/components/ui/Loading';
+import { useToast } from '@/components/ui/Toast';
 import { useWardrobe } from '@/lib/hooks/useWardrobe';
 import { ClothingItem, ClothingCategory, Season } from '@/lib/types';
 import { generateId } from '@/lib/utils/localStorage';
@@ -16,6 +17,7 @@ import Image from 'next/image';
 
 export default function WardrobePage() {
   const { items, loading, addItem, updateItem, deleteItem } = useWardrobe();
+  const { showToast } = useToast();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -72,7 +74,7 @@ export default function WardrobePage() {
 
   const handleAddItem = () => {
     if (!formData.image || !formData.color || !formData.season || formData.season.length === 0) {
-      alert('Please fill in all required fields');
+      showToast('Please fill in all required fields', 'error');
       return;
     }
 
@@ -89,17 +91,19 @@ export default function WardrobePage() {
     };
 
     addItem(newItem);
+    showToast('Item added successfully!', 'success');
     setIsAddModalOpen(false);
     resetForm();
   };
 
   const handleEditItem = () => {
     if (!selectedItem || !formData.image || !formData.color || !formData.season || formData.season.length === 0) {
-      alert('Please fill in all required fields');
+      showToast('Please fill in all required fields', 'error');
       return;
     }
 
     updateItem(selectedItem.id, formData);
+    showToast('Item updated successfully!', 'success');
     setIsEditModalOpen(false);
     setSelectedItem(null);
     resetForm();
@@ -108,6 +112,7 @@ export default function WardrobePage() {
   const handleDeleteItem = (item: ClothingItem) => {
     if (confirm(`Are you sure you want to delete this ${item.category}?`)) {
       deleteItem(item.id);
+      showToast('Item deleted successfully!', 'success');
     }
   };
 

@@ -21,7 +21,7 @@ export function WardrobeItemCard({ item, onEdit, onDelete, onClick }: WardrobeIt
         onClick={onClick}
       >
         <Image
-          src={item.image || '/placeholder-image.png'}
+          src={item.image || '/placeholder-image.svg'}
           alt={`${item.category} - ${item.color}`}
           fill
           className="object-cover"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/layout/Navigation";
+import { ToastProvider } from "@/components/ui/Toast";
 
 export const metadata: Metadata = {
   title: "GetSet - Smart Closet Organizer",
@@ -19,12 +20,14 @@ export default function RootLayout({
         <meta name="theme-color" content="#6366f1" />
       </head>
       <body className="antialiased bg-slate-50">
-        <div className="flex h-screen overflow-hidden">
-          <Navigation />
-          <main className="flex-1 overflow-y-auto md:ml-64 pb-16 md:pb-0">
-            {children}
-          </main>
-        </div>
+        <ToastProvider>
+          <div className="flex h-screen overflow-hidden">
+            <Navigation />
+            <main className="flex-1 overflow-y-auto md:ml-64 pb-16 md:pb-0">
+              {children}
+            </main>
+          </div>
+        </ToastProvider>
       </body>
     </html>
   );

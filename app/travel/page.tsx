@@ -7,6 +7,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Input, Select, Textarea } from '@/components/ui/Input';
 import { Badge } from '@/components/ui/Badge';
+import { useToast } from '@/components/ui/Toast';
 import { useTrips } from '@/lib/hooks/useTrips';
 import { Trip, TripType } from '@/lib/types';
 import { generateId } from '@/lib/utils/localStorage';
@@ -16,6 +17,7 @@ import { getWeatherForecast } from '@/lib/utils/weather';
 
 export default function TravelPage() {
   const { trips, addTrip, deleteTrip: deleteTripFn } = useTrips();
+  const { showToast } = useToast();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
@@ -44,7 +46,7 @@ export default function TravelPage() {
 
   const handleCreateTrip = async () => {
     if (!formData.destination || !formData.startDate || !formData.endDate) {
-      alert('Please fill in all required fields');
+      showToast('Please fill in all required fields', 'error');
       return;
     }
 
@@ -52,7 +54,7 @@ export default function TravelPage() {
     const endDate = new Date(formData.endDate);
 
     if (startDate > endDate) {
-      alert('End date must be after start date');
+      showToast('End date must be after start date', 'error');
       return;
     }
 
@@ -77,11 +79,29 @@ export default function TravelPage() {
       };
 
       addTrip(newTrip);
+      showToast('Trip created successfully!', 'success');
       setIsAddModalOpen(false);
       resetForm();
     } catch (error) {
       console.error('Error creating trip:', error);
-      alert('Failed to fetch weather data. Please try again.');
+      showToast('Failed to fetch weather data. Trip created without forecast.', 'error');
+      
+      // Create trip anyway without weather
+      const newTrip: Trip = {
+        id: generateId(),
+        destination: formData.destination,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        type: formData.type,
+        outfits: {},
+        weather: [],
+        packingList: [],
+        notes: formData.notes,
+      };
+
+      addTrip(newTrip);
+      setIsAddModalOpen(false);
+      resetForm();
     } finally {
       setLoading(false);
     }
@@ -90,6 +110,7 @@ export default function TravelPage() {
   const handleDeleteTrip = (trip: Trip) => {
     if (confirm(`Are you sure you want to delete the trip to ${trip.destination}?`)) {
       deleteTripFn(trip.id);
+      showToast('Trip deleted successfully!', 'success');
     }
   };
 
