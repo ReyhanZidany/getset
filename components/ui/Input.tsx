@@ -23,7 +23,7 @@ export function Input({
         </label>
       )}
       <input
-        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${widthStyles} ${
+        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${widthStyles} ${
           error ? 'border-red-500' : ''
         } ${className}`}
         {...props}
@@ -56,7 +56,7 @@ export function Textarea({
         </label>
       )}
       <textarea
-        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${widthStyles} ${
+        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${widthStyles} ${
           error ? 'border-red-500' : ''
         } ${className}`}
         rows={3}
@@ -92,7 +92,7 @@ export function Select({
         </label>
       )}
       <select
-        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${widthStyles} ${
+        className={`px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${widthStyles} ${
           error ? 'border-red-500' : ''
         } ${className}`}
         {...props}

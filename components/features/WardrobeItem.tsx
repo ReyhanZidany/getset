@@ -45,7 +45,7 @@ export function WardrobeItemCard({ item, onEdit, onDelete, onClick }: WardrobeIt
                 e.stopPropagation();
                 onEdit();
               }}
-              className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+              className="p-1.5 text-slate-500 hover:text-primary hover:bg-blue-50 rounded transition-colors"
             >
               <Edit className="h-4 w-4" />
             </button>

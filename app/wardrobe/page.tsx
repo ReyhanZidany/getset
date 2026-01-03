@@ -318,7 +318,7 @@ export default function WardrobePage() {
                   onClick={() => handleSeasonToggle(season)}
                   className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     (formData.season || []).includes(season)
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-primary text-white'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
@@ -404,7 +404,7 @@ export default function WardrobePage() {
                   onClick={() => handleSeasonToggle(season)}
                   className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     (formData.season || []).includes(season)
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-primary text-white'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
@@ -482,7 +482,7 @@ export default function WardrobePage() {
                   {selectedItem.season.map((season) => (
                     <span
                       key={season}
-                      className="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-sm capitalize"
+                      className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm capitalize"
                     >
                       {season}
                     </span>

@@ -8,7 +8,7 @@ interface ModalProps {
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
 }
 
 export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalProps) {
@@ -31,20 +31,25 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
     md: 'max-w-lg',
     lg: 'max-w-2xl',
     xl: 'max-w-4xl',
+    full: 'max-w-full',
   };
+
+  const isFullScreen = size === 'full';
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
-        onClick={onClose}
-      />
+      {!isFullScreen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+          onClick={onClose}
+        />
+      )}
 
       {/* Modal */}
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className={isFullScreen ? 'h-full' : 'flex min-h-full items-center justify-center p-4'}>
         <div
-          className={`relative bg-white rounded-lg shadow-xl ${sizeStyles[size]} w-full max-h-[90vh] overflow-y-auto`}
+          className={`relative bg-white ${isFullScreen ? 'h-full' : 'rounded-lg shadow-xl'} ${sizeStyles[size]} w-full ${isFullScreen ? '' : 'max-h-[90vh]'} overflow-y-auto`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
@@ -61,7 +66,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
           )}
 
           {/* Content */}
-          <div className="p-6">{children}</div>
+          <div className={isFullScreen ? '' : 'p-6'}>{children}</div>
         </div>
       </div>
     </div>

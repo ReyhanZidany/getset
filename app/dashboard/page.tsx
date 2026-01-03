@@ -5,19 +5,22 @@ import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { WeatherWidget } from '@/components/features/WeatherWidget';
 import { OutfitSuggestionCard } from '@/components/features/OutfitSuggestion';
+import { OutfitBuilder } from '@/components/features/OutfitBuilder';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { useWeather } from '@/lib/hooks/useWeather';
 import { useWardrobe } from '@/lib/hooks/useWardrobe';
 import { useOutfits } from '@/lib/hooks/useOutfits';
 import { getOutfitSuggestions } from '@/lib/utils/outfitSuggestions';
-import { Plus, Calendar as CalendarIcon, TrendingUp } from 'lucide-react';
+import { formatDate } from '@/lib/utils/dateUtils';
+import { Plus, Calendar as CalendarIcon, TrendingUp, Sparkles } from 'lucide-react';
 
 export default function DashboardPage() {
-  const [city, setCity] = useState('London');
+  const [city] = useState('London');
+  const [isOutfitBuilderOpen, setIsOutfitBuilderOpen] = useState(false);
   const { weather, loading: weatherLoading } = useWeather(city);
   const { items: wardrobeItems } = useWardrobe();
-  const { outfits } = useOutfits();
+  const { outfits, getOutfitForDate } = useOutfits();
 
   // Get outfit suggestions based on weather
   const suggestions = weather ? getOutfitSuggestions(weather, wardrobeItems) : [];
@@ -34,7 +37,7 @@ export default function DashboardPage() {
     // Try to get user's location for weather
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        async (position) => {
+        async () => {
           // For simplicity, we'll stick with the default city
           // In a real app, you'd use reverse geocoding to get the city name
         },
@@ -44,6 +47,10 @@ export default function DashboardPage() {
       );
     }
   }, []);
+
+  // Check if today's outfit already exists
+  const todayDate = formatDate(new Date());
+  const todayOutfit = getOutfitForDate(todayDate);
 
   return (
     <div>
@@ -58,7 +65,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{wardrobeItems.length}</p>
+                <p className="text-3xl font-bold text-primary">{wardrobeItems.length}</p>
                 <p className="text-sm text-slate-600 mt-1">Wardrobe Items</p>
               </div>
             </CardContent>
@@ -67,7 +74,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{outfitsThisWeek}</p>
+                <p className="text-3xl font-bold text-primary">{outfitsThisWeek}</p>
                 <p className="text-sm text-slate-600 mt-1">Outfits This Week</p>
               </div>
             </CardContent>
@@ -76,7 +83,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{outfits.length}</p>
+                <p className="text-3xl font-bold text-primary">{outfits.length}</p>
                 <p className="text-sm text-slate-600 mt-1">Total Outfits</p>
               </div>
             </CardContent>
@@ -85,7 +92,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">
+                <p className="text-3xl font-bold text-primary">
                   {wardrobeItems.length > 0 
                     ? Math.round(wardrobeItems.reduce((sum, item) => sum + item.wearCount, 0) / wardrobeItems.length)
                     : 0}
@@ -101,6 +108,57 @@ export default function DashboardPage() {
           <WeatherWidget weather={weather} loading={weatherLoading} />
           <OutfitSuggestionCard suggestions={suggestions} />
         </div>
+
+        {/* Build Today's Outfit - Main CTA */}
+        {!todayOutfit && wardrobeItems.length >= 3 && (
+          <Card className="bg-gradient-to-br from-primary via-primary-dark to-blue-800 border-none shadow-2xl">
+            <CardContent className="pt-6">
+              <div className="text-center text-white">
+                <div className="mb-4">
+                  <Sparkles className="w-16 h-16 mx-auto mb-3 text-yellow-300" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Ready to get dressed?</h3>
+                <p className="text-blue-100 mb-6">
+                  Let&apos;s build the perfect outfit for today with smart AI suggestions
+                </p>
+                <Button
+                  onClick={() => setIsOutfitBuilderOpen(true)}
+                  variant="secondary"
+                  size="lg"
+                  className="bg-white text-primary hover:bg-blue-50"
+                >
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Build Today&apos;s Outfit
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Today's Outfit Already Created */}
+        {todayOutfit && (
+          <Card className="border-2 border-green-200 bg-green-50">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="text-4xl mb-3">✅</div>
+                <h3 className="text-xl font-bold text-green-900 mb-2">
+                  Today&apos;s outfit is ready!
+                </h3>
+                <p className="text-green-700 mb-4">
+                  You&apos;ve already planned {todayOutfit.items.length} items for today
+                </p>
+                <div className="flex gap-3 justify-center">
+                  <Link href="/calendar">
+                    <Button variant="outline">View in Calendar</Button>
+                  </Link>
+                  <Button onClick={() => setIsOutfitBuilderOpen(true)}>
+                    Edit Outfit
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Quick Actions */}
         <Card>
@@ -141,12 +199,12 @@ export default function DashboardPage() {
 
         {/* Getting Started Guide */}
         {wardrobeItems.length === 0 && (
-          <Card className="border-indigo-200 bg-indigo-50">
+          <Card className="border-blue-200 bg-blue-50">
             <CardHeader>
-              <CardTitle className="text-indigo-900">Getting Started</CardTitle>
+              <CardTitle className="text-blue-900">Getting Started</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-indigo-800 mb-4">
+              <p className="text-blue-800 mb-4">
                 Welcome to GetSet! Start by adding items to your virtual wardrobe.
               </p>
               <Link href="/wardrobe">
@@ -156,6 +214,13 @@ export default function DashboardPage() {
           </Card>
         )}
       </div>
+
+      {/* Outfit Builder Modal */}
+      <OutfitBuilder
+        isOpen={isOutfitBuilderOpen}
+        onClose={() => setIsOutfitBuilderOpen(false)}
+        initialDate={todayDate}
+      />
     </div>
   );
 }

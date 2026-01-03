@@ -91,8 +91,8 @@ export function ImageUpload({ value, onChange, label = 'Upload Image' }: ImageUp
           onDrop={handleDrop}
           className={`w-full aspect-square border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer transition-colors ${
             isDragging
-              ? 'border-indigo-500 bg-indigo-50'
-              : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50'
+              ? 'border-primary bg-blue-50'
+              : 'border-slate-300 hover:border-primary-light hover:bg-slate-50'
           }`}
         >
           <Upload className="h-12 w-12 text-slate-400 mb-2" />
