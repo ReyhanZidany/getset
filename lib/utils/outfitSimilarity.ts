@@ -94,8 +94,8 @@ export function findSimilarOutfits(
   const targetCategories = getOutfitCategories(targetOutfit.items, wardrobeItems);
   
   for (const outfit of allOutfits) {
-    // Skip the target outfit itself
-    if (outfit.id === targetOutfit.id || outfit.date === targetOutfit.date) {
+    // Skip the target outfit itself (compare by ID only for uniqueness)
+    if (outfit.id === targetOutfit.id) {
       continue;
     }
     

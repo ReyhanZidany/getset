@@ -31,6 +31,9 @@ export function filterByTemperature(
     
     if (!seasonMatch) return false;
     
+    // Cache lowercase notes for performance
+    const lowerNotes = item.notes.toLowerCase();
+    
     // Additional filtering based on temperature ranges
     if (temperature < 15) {
       // Cold weather: prioritize warm items
@@ -40,7 +43,7 @@ export function filterByTemperature(
       if (warmCategories.includes(item.category)) return true;
       
       const hasWarmKeywords = warmKeywords.some(keyword =>
-        item.notes.toLowerCase().includes(keyword)
+        lowerNotes.includes(keyword)
       );
       
       return hasWarmKeywords || item.season.includes('winter') || item.season.includes('fall');
@@ -52,7 +55,7 @@ export function filterByTemperature(
       const lightKeywords = ['shorts', 'short', 'tank', 'light', 'sandal', 'summer'];
       
       const hasLightKeywords = lightKeywords.some(keyword =>
-        item.notes.toLowerCase().includes(keyword) ||
+        lowerNotes.includes(keyword) ||
         item.category.toLowerCase().includes(keyword)
       );
       
