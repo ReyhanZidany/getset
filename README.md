@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GetSet - Smart Closet Organizer 👕
 
-## Getting Started
+A Progressive Web App (PWA) for organizing your daily outfits with AI-powered weather-based suggestions.
 
-First, run the development server:
+![Homepage](https://github.com/user-attachments/assets/49b2bd2c-aade-429d-8dd4-70641ef544ca)
 
+## ✨ Features
+
+### 🏠 Dashboard
+- Real-time weather display for your location
+- Weather-based outfit suggestions
+- Quick stats overview (wardrobe items, weekly outfits)
+- Quick action buttons for common tasks
+
+![Dashboard](https://github.com/user-attachments/assets/e5f0448c-cba0-4e77-8eb0-fee4901f60b4)
+
+### 👔 Virtual Wardrobe
+- Add clothing items with image upload (drag & drop supported)
+- Categorize items: tops, bottoms, dresses, outerwear, shoes, accessories
+- Tag items with colors and seasons
+- Advanced filtering and search
+- Edit and delete items
+- View detailed item information
+
+![Wardrobe](https://github.com/user-attachments/assets/fee0011a-8bdc-4a4a-b3ad-d9708aaac900)
+
+### 📅 Outfit Calendar
+- Interactive calendar view
+- Plan daily outfits by selecting items from your wardrobe
+- Add outfit photos
+- Add notes for each outfit
+- Visual indicators for logged outfits
+
+![Calendar](https://github.com/user-attachments/assets/1b7ba730-c503-4245-bfe8-0c19d2767ff7)
+
+### ✈️ Travel Planner
+- Create trips with destination and dates
+- Weather forecast for your destination (up to 7 days)
+- Plan outfits for each day of your trip
+- Packing tips and suggestions
+- Trip type categorization (business, vacation, weekend)
+
+![Travel](https://github.com/user-attachments/assets/90078d6a-d7fa-478d-bed3-1190362dd6d2)
+
+### 📊 Statistics Dashboard
+- Most and least worn items
+- Favorite colors analysis
+- Category distribution
+- Monthly outfit trends
+- Personalized style insights
+
+![Statistics](https://github.com/user-attachments/assets/54be0045-c5cb-4c76-bd41-6dfd2257e33b)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ReyhanZidany/getset.git
+cd getset
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file for environment variables (optional for weather features):
+```bash
+NEXT_PUBLIC_WEATHER_API_KEY=your_openweathermap_api_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> **Note:** Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
 
-## Learn More
+4. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Build for Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework:** Next.js 16.1.1 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **UI Components:** Custom component library
+- **Icons:** Lucide React
+- **Calendar:** React Calendar
+- **Date Handling:** date-fns
+- **PWA:** next-pwa
+- **Storage:** Browser LocalStorage
+- **Weather API:** OpenWeatherMap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📱 Progressive Web App
+
+GetSet is a fully functional PWA that can be installed on your device:
+
+1. Visit the app in your browser
+2. Look for the "Install" prompt
+3. Click "Install" to add it to your home screen
+4. Use it like a native app!
+
+### PWA Features
+- ✅ Offline-ready
+- ✅ Installable on desktop and mobile
+- ✅ Fast loading with caching
+- ✅ Responsive design
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary:** Indigo (#6366f1)
+- **Secondary:** Slate gray
+- **Success:** Green
+- **Warning:** Yellow
+- **Error:** Red
+
+### Components
+All UI components are custom-built and reusable:
+- Buttons (primary, secondary, outline, danger)
+- Cards with headers and content areas
+- Modals for forms and details
+- Input fields, selects, and textareas
+- Badges for labels
+- Loading states (spinner and skeleton)
+- Toast notifications
+- Image upload with preview
+
+## 💾 Data Storage
+
+All data is stored locally in your browser using LocalStorage:
+- Wardrobe items
+- Outfit history
+- Travel plans
+- No server required
+- Your data never leaves your device
+
+## 🌤️ Weather Integration
+
+The app uses OpenWeatherMap API to provide:
+- Current weather conditions
+- Temperature and feels-like temperature
+- Humidity and wind speed
+- 7-day weather forecast for travel planning
+
+### Smart Outfit Suggestions
+
+Recommendations based on:
+
+**Temperature:**
+- < 10°C: Heavy jacket, long pants, boots
+- 10-20°C: Light jacket, jeans, sneakers
+- 20-28°C: T-shirt, shorts/skirt, sandals
+- \> 28°C: Light clothing, sun protection
+
+**Weather Conditions:**
+- Rain: Waterproof jacket, umbrella
+- Snow: Winter coat, boots
+- Sunny: Sunglasses, hat
+- Windy: Windbreaker
+
+## 📂 Project Structure
+
+```
+getset/
+├── app/                      # Next.js app directory
+│   ├── dashboard/           # Dashboard page
+│   ├── wardrobe/            # Wardrobe management
+│   ├── calendar/            # Outfit calendar
+│   ├── travel/              # Travel planner
+│   ├── stats/               # Statistics dashboard
+│   ├── layout.tsx           # Root layout with navigation
+│   ├── page.tsx             # Homepage
+│   └── globals.css          # Global styles
+├── components/              # React components
+│   ├── features/           # Feature-specific components
+│   ├── layout/             # Layout components (nav, header)
+│   └── ui/                 # Reusable UI components
+├── lib/                     # Utilities and logic
+│   ├── hooks/              # Custom React hooks
+│   ├── types/              # TypeScript type definitions
+│   └── utils/              # Utility functions
+├── public/                  # Static assets
+│   ├── manifest.json       # PWA manifest
+│   └── images/             # App icons
+└── package.json            # Dependencies
+```
+
+## 🔒 Security
+
+- ✅ No vulnerabilities found (CodeQL scan passed)
+- ✅ All data stored locally (no external database)
+- ✅ API keys use environment variables
+- ✅ TypeScript for type safety
+- ✅ Input validation on forms
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Weather data provided by [OpenWeatherMap](https://openweathermap.org/)
+- Icons by [Lucide](https://lucide.dev/)
+- Built with [Next.js](https://nextjs.org/)
+
+---
+
+Made with ❤️ for fashion-conscious developers
